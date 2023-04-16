@@ -16,7 +16,6 @@ let board = [
 ];
 
 const handleClick = (element) => {
-  console.log(`The element you clicked on has an id:  ${element.id}`);
 
   if (!document.getElementById(element.id).innerHTML) {
     addMarker(element.id);
@@ -24,16 +23,11 @@ const handleClick = (element) => {
 };
 
 const addMarker = (id) => {
-  console.log(`*** The current marker is:  ${currentMarker}. ***`);
-  console.log(
-    `Therefore, a  "${currentMarker}"  should be placed in the square with the id:  ${id}`
-  );
 
   const row = parseInt(id.charAt(0));
   const column = parseInt(id.charAt(2));
   board[row][column] = currentMarker;
 
-  // changeMarker(document.getElementById(id).innerHTML = currentMarker)
 
   document.getElementById(id).innerHTML = currentMarker;
   checkForWin();
@@ -41,7 +35,7 @@ const addMarker = (id) => {
 
 const checkForWin = () => {
   if (horizontalWin() || verticalWin() || diagonalWin()) {
-    window.alert(`Player ${currentMarker} won!`);
+    setTimeout(() => {window.alert(`Player ${currentMarker} won!`)}, 100);
   } else {
     changeMarker();
   }
